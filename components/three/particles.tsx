@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react"
 import { useFrame } from "@react-three/fiber"
-import type * as THREE from "three"
+import * as THREE from "three" // Changed to regular import to use THREE types properly
 
 export function MagicParticles() {
   const pointsRef = useRef<THREE.Points>(null)
@@ -25,12 +25,10 @@ export function MagicParticles() {
     for (let i = 0; i < count; i++) {
       const isTeal = Math.random() > 0.5
       if (isTeal) {
-        // Teal color
         cols[i * 3] = 0.13
         cols[i * 3 + 1] = 0.59
         cols[i * 3 + 2] = 0.56
       } else {
-        // Cyan/light teal color
         cols[i * 3] = 0.2
         cols[i * 3 + 1] = 0.8
         cols[i * 3 + 2] = 0.8
@@ -41,22 +39,40 @@ export function MagicParticles() {
 
   useFrame((state) => {
     if (!pointsRef.current) return
-    const positionsArr = pointsRef.current.geometry.attributes.position.array as Float32Array
+    
+    // Cast to BufferAttribute to fix TS error on accessing array
+    const posAttr = pointsRef.current.geometry.attributes.position as THREE.BufferAttribute
+    const positionsArr = posAttr.array as Float32Array
 
     for (let i = 0; i < count; i++) {
       positionsArr[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.003
     }
-    ;(pointsRef.current.geometry.attributes.position as any).needsUpdate = true
+    
+    // Proper way to set update flag
+    posAttr.needsUpdate = true
     pointsRef.current.rotation.y = state.clock.elapsedTime * 0.02
   })
 
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} args={[]} />
-        <bufferAttribute attach="attributes-color" count={count} array={colors} itemSize={3} args={[]} />
+        {/* FIX: Pass array and itemSize (3) inside args */}
+        <bufferAttribute 
+          attach="attributes-position" 
+          args={[positions, 3]} 
+        />
+        <bufferAttribute 
+          attach="attributes-color" 
+          args={[colors, 3]} 
+        />
       </bufferGeometry>
-      <pointsMaterial size={0.1} vertexColors transparent opacity={0.85} sizeAttenuation />
+      <pointsMaterial 
+        size={0.1} 
+        vertexColors 
+        transparent 
+        opacity={0.85} 
+        sizeAttenuation 
+      />
     </points>
   )
 }
