@@ -15,10 +15,10 @@ export function SceneEnvironment() {
     const ctx = canvas.getContext("2d")!
 
     const gradient = ctx.createLinearGradient(0, 0, 0, 512)
-    gradient.addColorStop(0, "#3AB0FF") 
+    gradient.addColorStop(0, "#3AB0FF")
     gradient.addColorStop(0.35, "#7AD5FF")
-    gradient.addColorStop(0.65, "#FFD7A8") 
-    gradient.addColorStop(1, "#F6F8FF") 
+    gradient.addColorStop(0.65, "#FFD7A8")
+    gradient.addColorStop(1, "#F6F8FF")
 
     ctx.fillStyle = gradient
     ctx.fillRect(0, 0, 2, 512)
@@ -43,11 +43,11 @@ export function SceneEnvironment() {
         position={[15, 25, 15]}
         intensity={1.8}
         castShadow
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={[1024, 1024]}
         color="#fff4e3"
       />
       <directionalLight position={[-10, 10, -5]} intensity={0.45} color="#e8f6ff" />
-      
+
       {/* FIX IS HERE: Changed skyColor to color */}
       <hemisphereLight color="#7bd0ff" groundColor="#e8d8b0" intensity={0.6} />
     </>

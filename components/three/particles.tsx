@@ -2,11 +2,11 @@
 
 import { useRef, useMemo } from "react"
 import { useFrame } from "@react-three/fiber"
-import * as THREE from "three" // Changed to regular import to use THREE types properly
+import type * as THREE from "three"
 
 export function MagicParticles() {
   const pointsRef = useRef<THREE.Points>(null)
-  const count = 200
+  const count = 100
 
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3)
@@ -39,16 +39,14 @@ export function MagicParticles() {
 
   useFrame((state) => {
     if (!pointsRef.current) return
-    
-    // Cast to BufferAttribute to fix TS error on accessing array
+
     const posAttr = pointsRef.current.geometry.attributes.position as THREE.BufferAttribute
     const positionsArr = posAttr.array as Float32Array
 
     for (let i = 0; i < count; i++) {
       positionsArr[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.003
     }
-    
-    // Proper way to set update flag
+
     posAttr.needsUpdate = true
     pointsRef.current.rotation.y = state.clock.elapsedTime * 0.02
   })
@@ -56,23 +54,10 @@ export function MagicParticles() {
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        {/* FIX: Pass array and itemSize (3) inside args */}
-        <bufferAttribute 
-          attach="attributes-position" 
-          args={[positions, 3]} 
-        />
-        <bufferAttribute 
-          attach="attributes-color" 
-          args={[colors, 3]} 
-        />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
-      <pointsMaterial 
-        size={0.1} 
-        vertexColors 
-        transparent 
-        opacity={0.85} 
-        sizeAttenuation 
-      />
+      <pointsMaterial size={0.1} vertexColors transparent opacity={0.85} sizeAttenuation />
     </points>
   )
 }

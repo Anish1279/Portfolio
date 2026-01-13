@@ -11,7 +11,7 @@ export function AudioControl() {
 
   useEffect(() => {
     // Create audio element
-    audioRef.current = new Audio("/audio/game-theme.mp3")
+    audioRef.current = new Audio("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/files-blob/Portfolio-main/public/audio/game-theme-n4YE77J0eVfkfSsWvfxo1WRPc8AyxD.mp3")
     audioRef.current.loop = true
     audioRef.current.volume = 0.3
     audioRef.current.preload = "auto"

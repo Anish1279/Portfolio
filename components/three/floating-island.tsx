@@ -101,14 +101,14 @@ export function FloatingIsland() {
   // Character definitions (Only Barbarian remains)
   const charDefs: CharDef[] = useMemo(
     () => [
-      { 
-        url: CHAR_URLS.barbarian, 
-        desiredSize: 2.0, 
-        rotation: [-0.1, -Math.PI * 0.14, 0.0], 
-        tweak: [-5.90, 0.7, -14.70] 
+      {
+        url: CHAR_URLS.barbarian,
+        desiredSize: 4.0,
+        rotation: [0.0, Math.PI * 0.0012, 0.0],
+        tweak: [7.9, -0.5, -8.9],
       },
     ],
-    []
+    [],
   )
 
   const { scene: baseScene } = useGLTF(BASE_URL) as any
@@ -123,7 +123,7 @@ export function FloatingIsland() {
     const size = box.getSize(new THREE.Vector3())
     const maxDim = Math.max(size.x, size.y, size.z) || 1
 
-    const DESIRED_BASE = 8.0
+    const DESIRED_BASE = 20
     const scale = DESIRED_BASE / maxDim
     baseRef.current.scale.setScalar(scale)
     baseScaleRef.current = scale
