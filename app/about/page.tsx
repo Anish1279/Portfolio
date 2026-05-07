@@ -75,13 +75,27 @@ const achievements = [
     period: "Ongoing",
     description: [
       "1000+ problems solved across multiple platforms",
-      "LeetCode maximum rating: 1781",
+      "LeetCode maximum rating: 1860",
       "Global Rank 942 out of 30,000+ in Biweekly Contest 148",
       "CodeChef maximum rating: 1551, Global Rank 633",
     ],
     icon: Code,
     color: "from-orange-500 to-red-500",
     accentColor: "#f97316",
+  },
+  {
+    id: "trendgully",
+    title: "Software Development Engineer Intern",
+    subtitle: "Trendgully, Bengaluru, India",
+    period: "Feb 2026 - Present",
+    description: [
+      "Designed and implemented asynchronous, production-grade REST and WebSocket services in Python (FastAPI, async) for real-time trend ingestion; modeled schemas with Pydantic and tuned PostgreSQL indexes and query plans for relational database workloads – reduced average query latency by 30%.",
+      "Built fault-tolerant microservices with Docker and Kubernetes; introduced Redis caching and async background workers, improving system throughput by 40% and reducing origin DB load by 35%.",
+      "Hardened security with JWT/OAuth2, integrated CI/CD pipelines (GitHub Actions), and added observability – decreased mean time to recovery (MTTR) by 25%.",
+    ],
+    icon: Briefcase,
+    color: "from-purple-500 to-pink-500",
+    accentColor: "#d946ef",
   },
 ]
 

@@ -7,6 +7,18 @@ import Image from "next/image"
 
 const projects = [
   {
+    id: "rightsy",
+    title: "Rightsy",
+    description:
+      "Gamified legal education platform for ages 6-16 with 10+ interactive games and story-based videos. Scaled to 1000+ monthly visitors.",
+    tags: ["Next.js", "React", "MongoDB", "YouTube API"],
+    link: "https://v0-rightsy.vercel.app/",
+    github: "https://github.com/Anish1279/Rightsy",
+    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+    highlights: ["45% engagement increase", "25% retention boost", "<200ms response time"],
+    image: "/rightsy.png",
+  },
+  {
     id: "prepai",
     title: "PrepAI",
     description:
@@ -18,7 +30,6 @@ const projects = [
     highlights: ["15% faster page load", "100% data consistency", "50+ pilot subscriptions"],
     image: "/prepAi.png",
   },
-
   {
     id: "youtube-toolkit",
     title: "BuzzTube",
@@ -31,20 +42,18 @@ const projects = [
     highlights: ["$75K ARR", "30% MoM revenue growth", "99.9% uptime"],
     image: "/buzztube.png",
   },
-
   {
-    id: "rightsy",
-    title: "Rightsy",
+    id: "finboard",
+    title: "FinBoard",
     description:
-      "Gamified legal education platform for ages 6-16 with 10+ interactive games and story-based videos. Scaled to 1000+ monthly visitors.",
-    tags: ["Next.js", "React", "MongoDB", "YouTube API"],
-    link: "https://github.com/Anish1279/Rightsy",
-    github: "https://github.com/Anish1279/Rightsy",
-    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-    highlights: ["45% engagement increase", "25% retention boost", "<200ms response time"],
-    image: "/rightsy.png",
+      "FinBoard is a production-grade, full-spectrum personal finance dashboard that transforms raw transaction data into a living picture of your financial health. It tracks income, expenses, and investments — from stock holdings and F&O positions to mutual fund SIPs — all unified under a single, beautifully crafted interface.",
+    tags: ["Next.js", "TypeScript", "TailwindCSS", "Finance"],
+    link: "https://fin-board-eosin.vercel.app/",
+    github: "https://github.com/Anish1279/FinBoard",
+    gradient: "from-blue-500 via-indigo-500 to-purple-500",
+    highlights: ["Real-time tracking", "Investment portfolio", "Interactive charts"],
+    image: "/finboard.png",
   },
-  
   {
     id: "innobyte",
     title: "Oasis",
@@ -100,11 +109,11 @@ export default function ProjectsPage() {
                   perspective: "1000px",
                   transformStyle: "preserve-3d",
                 }}
-                className="group cursor-pointer"
+                className="group cursor-pointer h-full"
               >
-                <div className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 border border-slate-100 transform-gpu">
+                <div className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 border border-slate-100 transform-gpu h-full flex flex-col">
                   {/* Project Image */}
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-64 shrink-0 overflow-hidden">
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
                     <Image
                       src={project.image || "/placeholder.svg"}
@@ -115,8 +124,8 @@ export default function ProjectsPage() {
                     <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradient}`} />
                   </div>
 
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-start justify-between gap-4 mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-slate-800 mb-2 group-hover:text-sky-600 transition-colors">
                           {project.title}
@@ -156,10 +165,10 @@ export default function ProjectsPage() {
                       </div>
                     </div>
 
-                    <p className="text-slate-600 mb-4 leading-relaxed">{project.description}</p>
+                    <p className="text-slate-600 mb-4 leading-relaxed flex-grow">{project.description}</p>
 
                     {/* Highlights with 3D pop effect */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-auto">
                       {project.highlights.map((highlight, i) => (
                         <motion.div
                           key={i}

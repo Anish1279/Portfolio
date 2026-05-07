@@ -9,8 +9,8 @@ const codingProfiles = [
   {
     platform: "LeetCode",
     username: "anish1279",
-    rating: 1781,
-    maxRating: 1781,
+    rating: 1860,
+    maxRating: 1860,
     problemsSolved: 500,
     globalRank: 942,
     contestRank: "Contest 148",

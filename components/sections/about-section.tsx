@@ -37,7 +37,7 @@ const achievements = [
   {
     id: "leetcode",
     title: "Active Leetcoder",
-    description: "1000+ problems solved, Max rating 1781, Global Rank 942 in Contest 148.",
+    description: "1000+ problems solved, Max rating 1860, Global Rank 942 in Contest 148.",
     icon: Code,
     color: "from-orange-500 to-red-600",
   },

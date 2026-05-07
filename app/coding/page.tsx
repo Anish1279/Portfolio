@@ -8,8 +8,8 @@ const codingProfiles = [
   {
     platform: "LeetCode",
     username: "anish1279",
-    rating: 1781,
-    maxRating: 1781,
+    rating: 1860,
+    maxRating: 1860,
     problemsSolved: 500,
     globalRank: 942,
     contestRank: "Contest 148",
@@ -51,7 +51,7 @@ const stats = [
   { label: "Total Problems Solved", value: "1000+", icon: Target, color: "from-purple-500 to-pink-500" },
   { label: "Best Global Rank", value: "633", icon: TrendingUp, color: "from-amber-500 to-orange-500" },
   { label: "Contests Participated", value: "50+", icon: Trophy, color: "from-emerald-500 to-teal-500" },
-  { label: "Max Rating", value: "1781", icon: Award, color: "from-blue-500 to-cyan-500" },
+  { label: "Max Rating", value: "1860", icon: Award, color: "from-blue-500 to-cyan-500" },
 ]
 
 export default function CodingPage() {

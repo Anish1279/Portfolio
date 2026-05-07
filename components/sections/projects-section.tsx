@@ -7,6 +7,15 @@ import { cn } from "@/lib/utils"
 
 const projects = [
   {
+    id: "rightsy",
+    title: "Rightsy",
+    description: "Gamified legal education platform for ages 6-16 with 10+ interactive games and story-based videos.",
+    tags: ["Next.js", "React", "MongoDB", "YouTube API"],
+    link: "https://v0-rightsy.vercel.app/",
+    github: "https://github.com/Anish1279/Rightsy",
+    image: "/kids-legal-education-game-platform.jpg",
+  },
+  {
     id: "prepai",
     title: "PrepAI",
     description:
@@ -15,8 +24,7 @@ const projects = [
     link: "https://prep-ai-lac.vercel.app",
     github: "https://github.com/Anish1279/PrepAI",
     image: "/ai-career-coaching-app-interface.jpg",
-  },  
-  
+  },
   {
     id: "youtube-toolkit",
     title: "BuzzTube",
@@ -26,17 +34,15 @@ const projects = [
     github: "#",
     image: "/youtube-content-creator-dashboard.jpg",
   },
-
   {
-    id: "rightsy",
-    title: "Rightsy",
-    description: "Gamified legal education platform for ages 6-16 with 10+ interactive games and story-based videos.",
-    tags: ["Next.js", "React", "MongoDB", "YouTube API"],
-    link: "#",
-    github: "#",
-    image: "/kids-legal-education-game-platform.jpg",
+    id: "finboard",
+    title: "FinBoard",
+    description: "FinBoard is a production-grade, full-spectrum personal finance dashboard that transforms raw transaction data into a living picture of your financial health. It tracks income, expenses, and investments — from stock holdings and F&O positions to mutual fund SIPs — all unified under a single, beautifully crafted interface.",
+    tags: ["Next.js", "TypeScript", "TailwindCSS", "Finance"],
+    link: "https://fin-board-eosin.vercel.app/",
+    github: "https://github.com/Anish1279/FinBoard",
+    image: "/finboard.png",
   },
-
   {
     id: "innobyte",
     title: "Oasis",
@@ -103,7 +109,7 @@ export function ProjectsSection() {
                   )}
                 >
                   {/* Project Image */}
-                  <div className="relative h-40 overflow-hidden">
+                  <div className="relative h-56 overflow-hidden">
                     <img
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
