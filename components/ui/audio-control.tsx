@@ -5,17 +5,27 @@ import { Volume2, VolumeX } from "lucide-react"
 import { useAppStore } from "@/lib/store"
 import { cn } from "@/lib/utils"
 
+const AUDIO_SRC =
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/files-blob/Portfolio-main/public/audio/game-theme-n4YE77J0eVfkfSsWvfxo1WRPc8AyxD.mp3"
+
 export function AudioControl() {
-  const { isMuted, toggleMute } = useAppStore() 
+  const { isMuted, toggleMute } = useAppStore()
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  useEffect(() => {
-    // Create audio element
-    audioRef.current = new Audio("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/files-blob/Portfolio-main/public/audio/game-theme-n4YE77J0eVfkfSsWvfxo1WRPc8AyxD.mp3")
-    audioRef.current.loop = true
-    audioRef.current.volume = 0.3
-    audioRef.current.preload = "auto"
+  // Lazily construct the audio element only when the user first unmutes.
+  // Avoids a ~1.8 MB MP3 fetch competing with GLB downloads on first paint.
+  const ensureAudio = () => {
+    if (audioRef.current) return audioRef.current
+    const audio = new Audio()
+    audio.preload = "none"
+    audio.loop = true
+    audio.volume = 0.3
+    audio.src = AUDIO_SRC
+    audioRef.current = audio
+    return audio
+  }
 
+  useEffect(() => {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause()
@@ -25,23 +35,19 @@ export function AudioControl() {
   }, [])
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
     if (isMuted) {
-      audio.pause()
-    } else {
-      const playPromise = audio.play()
-      
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.log("Autoplay prevented:", error)
-        })
-      }
+      audioRef.current?.pause()
+      return
+    }
+    const audio = ensureAudio()
+    const playPromise = audio.play()
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.log("Autoplay prevented:", error)
+      })
     }
   }, [isMuted])
 
-  // Keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === "m" && !e.ctrlKey && !e.metaKey) {
@@ -56,11 +62,10 @@ export function AudioControl() {
     <button
       onClick={toggleMute}
       className={cn(
-        // CHANGED HERE: switched from "top-4 right-4" to "bottom-4 left-4"
         "fixed bottom-4 left-4 z-50 p-3 rounded-full glass glow-gold",
         "transition-all duration-300 hover:scale-110 active:scale-95",
         "flex items-center gap-2",
-        "cursor-pointer"
+        "cursor-pointer",
       )}
       aria-label={isMuted ? "Unmute audio" : "Mute audio"}
     >

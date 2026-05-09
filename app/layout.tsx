@@ -46,6 +46,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        {/* Kick off the village download in parallel with the JS bundle. */}
+        <link
+          rel="preload"
+          as="fetch"
+          href="/images/coc_base.glb"
+          type="model/gltf-binary"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />

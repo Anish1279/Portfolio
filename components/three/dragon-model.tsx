@@ -180,4 +180,6 @@ export function DragonModel({
   )
 }
 
-useGLTF.preload(DRAGON_URL)
+// Intentionally NOT preloading at module level — the dragon is deferred
+// behind an idle-callback gate in scene.tsx so it streams in *after* the
+// village is on screen, keeping the critical path small.
