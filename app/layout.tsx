@@ -8,11 +8,23 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Anish Singh | Software Developer Portfolio",
+  title: "Anish Singh | Full-Stack AI & Cloud Engineer",
   description:
-    "Passionate Software Developer | SIH 2023 Winner | 1000+ Problems Solved | Building scalable web applications",
+    "Full-Stack AI & Cloud Engineer building production-ready AI products, document intelligence workflows, and AWS/GCP deployments with DNS, SSL, CI/CD, and handover.",
   generator: "v0.app",
-  keywords: ["software developer", "full stack", "react", "next.js", "portfolio"],
+  keywords: [
+    "full-stack AI engineer",
+    "AI product development",
+    "document intelligence",
+    "AWS deployment",
+    "GCP deployment",
+    "DevOps",
+    "DNS configuration",
+    "SSL",
+    "Next.js",
+    "FastAPI",
+    "portfolio",
+  ],
   authors: [{ name: "Anish Singh" }],
   icons: {
     icon: [

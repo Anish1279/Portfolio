@@ -7,6 +7,19 @@ import Image from "next/image"
 
 const projects = [
   {
+    id: "document-tampering-detection",
+    title: "AI/ML Document Tampering Detection",
+    description:
+      "A live document-forensics application that applies AI/ML-based analysis to help surface potential tampering signals in uploaded documents.",
+    tags: ["AI/ML", "Document Forensics", "Tamper Detection"],
+    link: "http://103.73.189.6:5009/",
+    github: null,
+    gradient: "from-cyan-500 via-blue-500 to-violet-500",
+    highlights: ["AI/ML analysis", "Document forensics", "Live demo"],
+    image: "/document-tampering-detection.png",
+    featured: true,
+  },
+  {
     id: "rightsy",
     title: "Rightsy",
     description:
@@ -85,8 +98,8 @@ export default function ProjectsPage() {
           >
             <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">My Projects</h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Featured projects showcasing my expertise in full-stack development, AI integration, and scalable
-              architecture.
+              Live case studies across AI products, document intelligence, full-stack engineering, and cloud-ready
+              delivery.
             </p>
           </motion.div>
 
@@ -109,18 +122,28 @@ export default function ProjectsPage() {
                   perspective: "1000px",
                   transformStyle: "preserve-3d",
                 }}
-                className="group cursor-pointer h-full"
+                className={`group h-full ${project.featured ? "md:col-span-2" : ""}`}
               >
                 <div className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 border border-slate-100 transform-gpu h-full flex flex-col">
                   {/* Project Image */}
                   <div className="relative h-64 shrink-0 overflow-hidden">
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.title} live demo`}
+                      className="absolute inset-0 z-10 block focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-sky-500"
+                    >
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={`${project.title} project preview`}
+                        fill
+                        priority={index === 0}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </a>
                     <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradient}`} />
                   </div>
 
@@ -142,30 +165,47 @@ export default function ProjectsPage() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <motion.a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
-                        >
-                          <Github className="w-5 h-5 text-slate-600" />
-                        </motion.a>
+                        {project.github && (
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open ${project.title} source code`}
+                            title={`Open ${project.title} source code`}
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
+                          >
+                            <Github className="w-5 h-5 text-slate-600" aria-hidden="true" />
+                          </motion.a>
+                        )}
                         <motion.a
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Open ${project.title} live demo`}
+                          title={`Open ${project.title} live demo`}
                           whileHover={{ scale: 1.1, rotate: -5 }}
                           whileTap={{ scale: 0.95 }}
                           className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
                         >
-                          <ExternalLink className="w-5 h-5 text-slate-600" />
+                          <ExternalLink className="w-5 h-5 text-slate-600" aria-hidden="true" />
                         </motion.a>
                       </div>
                     </div>
 
                     <p className="text-slate-600 mb-4 leading-relaxed flex-grow">{project.description}</p>
+
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} live project`}
+                      className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-sky-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-300"
+                    >
+                      View live project
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </a>
 
                     {/* Highlights with 3D pop effect */}
                     <div className="flex flex-wrap gap-2 mt-auto">

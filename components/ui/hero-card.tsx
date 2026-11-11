@@ -6,7 +6,7 @@ import { Rocket, Sparkles, Trophy } from "lucide-react"
 export function HeroCard() {
   return (
     // 1. Perspective Container: This establishes the 3D space
-    <div className="fixed top-1/4 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-md perspective-1000">
+    <div className="fixed top-1/4 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-lg perspective-1000">
       <motion.div
         // Initial Entrance
         initial={{ opacity: 0, y: 100, scale: 0.5, rotateX: 45 }}
@@ -55,8 +55,8 @@ export function HeroCard() {
 
             {/* Main Title */}
             <div className="flex items-center gap-2 bg-black/10 px-4 py-1 rounded-full backdrop-blur-sm border border-white/10">
-              <h2 className="text-xl font-bold text-white drop-shadow-md">
-                Full-Stack Architect
+              <h2 className="text-lg sm:text-xl font-bold text-center text-white drop-shadow-md">
+                Full-Stack AI &amp; Cloud Engineer
               </h2>
               <Rocket className="w-5 h-5 text-yellow-300 animate-pulse drop-shadow-md" />
             </div>
@@ -64,7 +64,9 @@ export function HeroCard() {
             {/* Problem Solver Badge */}
             <div className="flex items-center justify-center gap-2 text-sky-100">
               <Sparkles className="w-4 h-4 text-sky-200" />
-              <span className="text-sm font-semibold uppercase tracking-wider shadow-black drop-shadow-sm">Problem Solver</span>
+              <span className="text-sm font-semibold uppercase tracking-wider shadow-black drop-shadow-sm">
+                AI Products • Cloud Delivery
+              </span>
               <Sparkles className="w-4 h-4 text-sky-200" />
             </div>
 
@@ -76,8 +78,8 @@ export function HeroCard() {
             >
               <Trophy className="w-5 h-5 text-yellow-400 drop-shadow-md" />
               <div className="text-left leading-tight">
-                <p className="text-xs text-sky-200 font-medium">Winner & Expert</p>
-                <p className="text-sm font-bold text-white">SIH '23 & Scalability</p>
+                <p className="text-xs text-sky-200 font-medium">Available for select projects</p>
+                <p className="text-sm font-bold text-white">AWS/GCP • DNS/SSL • CI/CD</p>
               </div>
             </motion.div>
 

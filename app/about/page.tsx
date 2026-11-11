@@ -1,12 +1,26 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Trophy, Users, Briefcase, Code, GraduationCap } from "lucide-react"
+import { Trophy, Users, Briefcase, Code, GraduationCap, Cloud, GitBranch, Globe } from "lucide-react"
 import { SkillsGrid } from "@/components/about/skills-grid"
 import { AchievementCard } from "@/components/about/achievement-card"
 import { Navigation } from "@/components/ui/navigation"
 
 const achievements = [
+  {
+    id: "blue-bricks",
+    title: "Full-Stack AI Engineer",
+    subtitle: "Blue Bricks | Perth, Australia (Remote)",
+    period: "Jul 2026 - Present",
+    description: [
+      "Building end-to-end AI-powered products and production web experiences for a Perth-based team.",
+      "Developing reliable application workflows, APIs, and document-intelligence solutions for real business needs.",
+      "Collaborating remotely to ship practical AI solutions with a focus on maintainable, cloud-ready delivery.",
+    ],
+    icon: Briefcase,
+    color: "from-sky-500 to-indigo-500",
+    accentColor: "#0284c7",
+  },
   {
     id: "ffe",
     title: "Amazon FFE UG Scholar",
@@ -42,7 +56,7 @@ const achievements = [
     id: "hncc",
     title: "Treasurer at HNCC",
     subtitle: "Coding Club of BIT Sindri",
-    period: "2025 - Present",
+    period: "2025 - 2026",
     description: [
       "Managing finances and budget allocation for club activities",
       "Organizing coding competitions and workshops",
@@ -87,7 +101,7 @@ const achievements = [
     id: "trendgully",
     title: "Software Development Engineer Intern",
     subtitle: "Trendgully, Bengaluru, India",
-    period: "Feb 2026 - Present",
+    period: "Feb 2026 - Jun 2026",
     description: [
       "Designed and implemented asynchronous, production-grade REST and WebSocket services in Python (FastAPI, async) for real-time trend ingestion; modeled schemas with Pydantic and tuned PostgreSQL indexes and query plans for relational database workloads – reduced average query latency by 30%.",
       "Built fault-tolerant microservices with Docker and Kubernetes; introduced Redis caching and async background workers, improving system throughput by 40% and reducing origin DB load by 35%.",
@@ -96,6 +110,33 @@ const achievements = [
     icon: Briefcase,
     color: "from-purple-500 to-pink-500",
     accentColor: "#d946ef",
+  },
+]
+
+const deliveryCapabilities = [
+  {
+    title: "AI product engineering",
+    description:
+      "From a focused idea to a production-ready application: polished product experiences, secure APIs, and practical AI workflows.",
+    details: ["AI workflows & document intelligence", "Full-stack web applications", "APIs, data models & integrations"],
+    icon: GitBranch,
+    color: "from-violet-500 to-fuchsia-500",
+  },
+  {
+    title: "Cloud deployment & reliability",
+    description:
+      "Cloud-ready delivery across AWS and GCP, with containerization, CI/CD, observability, and performance-minded architecture.",
+    details: ["AWS & GCP deployment", "Docker, Kubernetes & CI/CD", "Monitoring & launch readiness"],
+    icon: Cloud,
+    color: "from-sky-500 to-cyan-500",
+  },
+  {
+    title: "Launch, DNS & handover",
+    description:
+      "A complete path to launch, including custom-domain setup, DNS and SSL configuration, documentation, and a clean handover.",
+    details: ["Custom domains, DNS & SSL", "Deployment & rollback notes", "Clear production handover"],
+    icon: Globe,
+    color: "from-emerald-500 to-teal-500",
   },
 ]
 
@@ -115,17 +156,66 @@ export default function AboutPage() {
             className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">About Me</h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Explore my journey—a fusion of academic excellence and professional prowess. From honing my skills in CSE
-              to contributing value at esteemed organizations.
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              I build production-ready AI products, document-intelligence workflows, and cloud systems that teams can
+              confidently launch and operate.
             </p>
           </motion.div>
+
+          {/* Client delivery capabilities */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mb-16"
+          >
+            <div className="flex flex-col gap-2 mb-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-600">Built for client delivery</p>
+              <h2 className="text-2xl font-bold text-slate-800">From idea to a dependable launch</h2>
+              <p className="text-slate-600 max-w-3xl leading-relaxed">
+                I can own the technical path from a product brief through development, cloud deployment, and a documented
+                production handover.
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {deliveryCapabilities.map((capability, index) => {
+                const Icon = capability.icon
+
+                return (
+                  <motion.article
+                    key={capability.title}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.28 + index * 0.08 }}
+                    whileHover={{ y: -5, boxShadow: "0 20px 35px -18px rgba(14, 165, 233, 0.35)" }}
+                    className="rounded-2xl border border-slate-100 bg-white p-6 shadow-lg shadow-slate-200/50"
+                  >
+                    <div
+                      className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${capability.color} shadow-md`}
+                    >
+                      <Icon className="h-5 w-5 text-white" aria-hidden="true" />
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800">{capability.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{capability.description}</p>
+                    <ul className="mt-4 space-y-2">
+                      {capability.details.map((detail) => (
+                        <li key={detail} className="flex items-start gap-2 text-sm text-slate-600">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" />
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.article>
+                )
+              })}
+            </div>
+          </motion.section>
 
           {/* Skills Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
             className="mb-16"
           >
             <h2 className="text-2xl font-bold text-slate-800 mb-6">My Skills</h2>
@@ -136,19 +226,20 @@ export default function AboutPage() {
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.4 }}
             className="mb-16"
           >
             <h2 className="text-2xl font-bold text-slate-800 mb-4">Career Summary</h2>
             <p className="text-slate-600 leading-relaxed max-w-4xl">
-              {
-                "I am a passionate software developer pursuing B.Tech in Computer Science at BIT Sindri with an 8.30 CGPA. My trajectory is a testament to dedication and innovation. Dive into the chronicles of my education and work history, where every experience has shaped me into the versatile professional I am today."
-              }
+              I am a Full-Stack AI &amp; Cloud Engineer at Blue Bricks, working remotely with a Perth, Australia-based
+              team since July 2026. I turn product ideas into dependable software - from AI-enabled workflows and
+              full-stack development to AWS/GCP deployment, Docker, CI/CD, custom domains, DNS/SSL, and documented
+              production handover.
             </p>
           </motion.section>
 
           {/* Achievements Timeline */}
-          <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+          <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
             <h2 className="text-2xl font-bold text-slate-800 mb-8">Achievements & Experience</h2>
             <div className="relative">
               {/* Timeline line */}
